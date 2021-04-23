@@ -8,14 +8,21 @@ export default function OrderForm() {
     pineapple: false,
     beef: false,
     mushrooms: false,
+    special: "",
   });
 
-  const onSubmit = (event) => {
+  console.log(orderData);
+
+  const handleSubmit = (event) => {
     event.preventDefault();
   };
 
+  const handleChange = (event) => {
+    setOrderData({ ...orderData, [event.target.name]: event.target.value });
+  };
+
   return (
-    <form id="pizza-form" onSubmit={onSubmit}>
+    <form id="pizza-form" onSubmit={handleSubmit}>
       <label>
         Name
         <input id="name-input" name="name" />
@@ -23,7 +30,12 @@ export default function OrderForm() {
 
       <br />
 
-      <select id="size-dropdown">
+      <select
+        id="size-dropdown"
+        value={orderData.size}
+        onChange={handleChange}
+        name="size"
+      >
         <option>--Size?--</option>
         <option> Small </option>
         <option> Med </option>
@@ -34,26 +46,51 @@ export default function OrderForm() {
 
       <label>
         Onions
-        <input type="checkbox" name="onions" />
+        <input
+          type="checkbox"
+          name="onions"
+          value={orderData.onions}
+          onChange={handleChange}
+        />
       </label>
       <label>
         Pineapple
-        <input type="checkbox" name="pineapple" />
+        <input
+          type="checkbox"
+          name="pineapple"
+          value={orderData.pineapple}
+          onChange={handleChange}
+        />
       </label>
       <label>
         Beef
-        <input type="checkbox" name="beef" />
+        <input
+          type="checkbox"
+          name="beef"
+          value={orderData.beef}
+          onChange={handleChange}
+        />
       </label>
       <label>
         Mushrooms
-        <input type="checkbox" name="mushrooms" />
+        <input
+          type="checkbox"
+          name="mushrooms"
+          value={orderData.mushrooms}
+          onChange={handleChange}
+        />
       </label>
 
       <br />
 
       <label>
         Special Requests?
-        <textarea id="special-text" />
+        <textarea
+          id="special-text"
+          name="special"
+          value={orderData.special}
+          onChange={handleChange}
+        />
       </label>
 
       <br />
