@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function OrderForm() {
+  const [orderData, setOrderData] = useState({
+    name: "",
+    size: "",
+    onions: false,
+    pineapple: false,
+    beef: false,
+    mushrooms: false,
+  });
+
   const onSubmit = (event) => {
     event.preventDefault();
   };
@@ -46,6 +55,8 @@ export default function OrderForm() {
         Special Requests?
         <textarea id="special-text" />
       </label>
+
+      <br />
 
       <button id="order-button">Order</button>
     </form>
