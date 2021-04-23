@@ -1,6 +1,14 @@
 import React, { useState } from "react";
+import * as yup from "yup";
 
+//Form Schema / Shape
+const formSchema = yup.object().shape({
+  name: yup.string().required("name must be at least 2 characters"),
+});
+
+//Form component
 export default function OrderForm() {
+  //Order State
   const [orderData, setOrderData] = useState({
     name: "",
     size: "",
@@ -11,6 +19,12 @@ export default function OrderForm() {
     special: "",
   });
 
+  //Error State
+  const [errors, setErrors] = useState({
+    name: "",
+  });
+
+  //Submit Handler
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(orderData);
@@ -25,6 +39,10 @@ export default function OrderForm() {
     });
   };
 
+  //Validation Function
+  const validation = (name) => {};
+
+  //Change Handler
   const handleChange = (event) => {
     let value =
       event.target.type === "checkbox"
