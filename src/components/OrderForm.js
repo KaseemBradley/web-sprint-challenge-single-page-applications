@@ -26,7 +26,11 @@ export default function OrderForm() {
   };
 
   const handleChange = (event) => {
-    setOrderData({ ...orderData, [event.target.name]: event.target.value });
+    let value =
+      event.target.type === "checkbox"
+        ? event.target.checked
+        : event.target.value;
+    setOrderData({ ...orderData, [event.target.name]: value });
   };
 
   return (
@@ -62,7 +66,7 @@ export default function OrderForm() {
         <input
           type="checkbox"
           name="onions"
-          value={orderData.onions}
+          checked={orderData.onions}
           onChange={handleChange}
         />
       </label>
@@ -71,7 +75,7 @@ export default function OrderForm() {
         <input
           type="checkbox"
           name="pineapple"
-          value={orderData.pineapple}
+          checked={orderData.pineapple}
           onChange={handleChange}
         />
       </label>
@@ -80,7 +84,7 @@ export default function OrderForm() {
         <input
           type="checkbox"
           name="beef"
-          value={orderData.beef}
+          checked={orderData.beef}
           onChange={handleChange}
         />
       </label>
@@ -89,7 +93,7 @@ export default function OrderForm() {
         <input
           type="checkbox"
           name="mushrooms"
-          value={orderData.mushrooms}
+          checked={orderData.mushrooms}
           onChange={handleChange}
         />
       </label>
