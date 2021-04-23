@@ -164,7 +164,9 @@ export default function OrderForm() {
 
       <br />
 
-      <button id="order-button">Order</button>
+      <button id="order-button" name="button">
+        Order
+      </button>
     </form>
   );
 }
