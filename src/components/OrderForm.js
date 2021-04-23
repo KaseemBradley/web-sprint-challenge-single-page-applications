@@ -1,8 +1,12 @@
 import React from "react";
 
 export default function OrderForm() {
+  const onSubmit = (event) => {
+    event.preventDefault();
+  };
+
   return (
-    <form id="pizza-form">
+    <form id="pizza-form" onSubmit={onSubmit}>
       <label>
         Name
         <input id="name-input" name="name" />
@@ -42,6 +46,8 @@ export default function OrderForm() {
         Special Requests?
         <textarea id="special-text" />
       </label>
+
+      <button id="order-button">Order</button>
     </form>
   );
 }
