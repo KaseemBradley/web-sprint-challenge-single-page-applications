@@ -11,10 +11,18 @@ export default function OrderForm() {
     special: "",
   });
 
-  console.log(orderData);
-
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log(orderData);
+    setOrderData({
+      name: "",
+      size: "",
+      onions: false,
+      pineapple: false,
+      beef: false,
+      mushrooms: false,
+      special: "",
+    });
   };
 
   const handleChange = (event) => {
@@ -25,7 +33,12 @@ export default function OrderForm() {
     <form id="pizza-form" onSubmit={handleSubmit}>
       <label>
         Name
-        <input id="name-input" name="name" />
+        <input
+          id="name-input"
+          name="name"
+          value={orderData.name}
+          onChange={handleChange}
+        />
       </label>
 
       <br />
