@@ -35,6 +35,13 @@ export default function OrderForm() {
         Mushrooms
         <input type="checkbox" name="mushrooms" />
       </label>
+
+      <br />
+
+      <label>
+        Special Requests?
+        <textarea id="special-text" />
+      </label>
     </form>
   );
 }
