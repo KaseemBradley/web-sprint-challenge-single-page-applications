@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import * as yup from "yup";
+import axios from "axios";
 
-//Form Schema / Shape
+//Form Schema / Shape expected
 const formSchema = yup.object().shape({
-  name: yup.string().required("name must be at least 2 characters"),
+  name: yup.string().required("name must be at least 2 characters").min(2),
+  size: yup.string().required(),
+  onions: yup.string(),
+  pineapple: yup.string(),
+  beef: yup.string(),
+  mushrooms: yup.string(),
+  special: yup.string(),
 });
 
 //Form component
@@ -37,13 +44,38 @@ export default function OrderForm() {
       mushrooms: false,
       special: "",
     });
+    axios
+      .post("https://reqres.in/api/users", orderData)
+      .then((res) => console.log(res))
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   //Validation Function
-  const validation = (name) => {};
+  const validateName = (event) => {
+    yup
+      .reach(formSchema, event.target.name)
+      .validate(event.target.value)
+      .then((valid) => {
+        setErrors({
+          ...errors,
+          [event.target.name]: "",
+        });
+      })
+      .catch((err) => {
+        console.log(err.errors);
+        setErrors({
+          ...errors,
+          [event.target.name]: err.errors[0],
+        });
+      });
+  };
 
   //Change Handler
   const handleChange = (event) => {
+    event.persist();
+    validateName(event);
     let value =
       event.target.type === "checkbox"
         ? event.target.checked
@@ -62,6 +94,8 @@ export default function OrderForm() {
           onChange={handleChange}
         />
       </label>
+
+      {errors.name.length > 0 ? <p>{errors.name}</p> : null}
 
       <br />
 
